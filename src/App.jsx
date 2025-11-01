@@ -5,8 +5,10 @@ import { Outlet } from "react-router-dom";
 const App = () => {
   return (
     <div>
-      <Navbar />
-      <Outlet />
+      <div className="w-full max-w-7xl mx-auto">
+        <Navbar />
+        <Outlet />
+      </div>
     </div>
   );
 };
