@@ -2,7 +2,8 @@ import Hero from "@/components/Hero";
 import { API_OPTIONS } from "@/utils/constant";
 import React, { useEffect, useState } from "react";
 import Details from "./Details";
-import TrendingMovies from "@/sections/TrendingMovies";
+import MediaSection from "@/sections/MediaSection";
+
 
 const Home = () => {
   const [trendingData, setTrendingData] = useState(null);
@@ -23,7 +24,8 @@ const Home = () => {
   return (
     <div>
       <Hero data={trendingData} />
-      <TrendingMovies />
+      <MediaSection title="trending movies" category="trending" mediaType="movie" />
+      <MediaSection title="trending tv series" category="trending" mediaType="tv" />
     </div>
   );
 };
