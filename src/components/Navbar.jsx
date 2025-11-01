@@ -3,18 +3,17 @@ import NavLinks from "./NavLinks";
 import { Input } from "./ui/input";
 import { IoSearch } from "react-icons/io5";
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
-import { RxHamburgerMenu } from "react-icons/rx";
+import { RxCross2, RxHamburgerMenu } from "react-icons/rx";
 
 export const Navbar = () => {
   const [menuClicked, setMenuClicked] = useState(false);
 
   const handleMenuClick = () => {
     setMenuClicked((prev) => !prev);
-    console.log("clicked");
   };
 
   return (
-    <nav className="relative p-6 flex items-center justify-between rounded-3xl mt-5 backdrop-blur-lg">
+    <nav className="relative py-5 lg:p-6 flex items-center justify-between rounded-3xl mt-5 backdrop-blur-lg">
       <h1 className="text-2xl font-bold">Movie Matrix</h1>
 
       {/* Links for Desktop */}
@@ -22,7 +21,7 @@ export const Navbar = () => {
         <NavLinks />
       </div>
 
-      {/* Search Bar and Profile Picture */}
+      {/* Search Bar, Profile Picture (for Desktop) and Hamburger Menu(for Mobile) */}
       <div className="flex items-center gap-6">
         <div className="relative flex items-center max-md:hidden">
           <Input placeholder="Search movies..." className="pl-10" />
@@ -42,14 +41,19 @@ export const Navbar = () => {
         </div>
 
         {/* Hamburger Menu for Mobile */}
-        <div onClick={handleMenuClick}>
-          <RxHamburgerMenu className="text-3xl" />
-        </div>      
+        {menuClicked ? (
+          <RxCross2
+            onClick={() => setMenuClicked(false)}
+            className="text-3xl lg:hidden relative z-10"
+          />
+        ) : (
+          <RxHamburgerMenu onClick={handleMenuClick} className="text-3xl lg:hidden" />
+        )}
       </div>
 
       {/* Mobile Menu */}
       {menuClicked && (
-        <div className="absolute top-20 left-0 w-full h-[92vh] bg-gray-800 p-6 flex flex-col items-center lg:hidden">
+        <div className="absolute top-0 left-0 w-full h-screen z-8 bg-black p-6 pt-30 flex flex-col items-center lg:hidden">
           <NavLinks />
         </div>
       )}
