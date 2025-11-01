@@ -9,12 +9,10 @@ import { PROFILE_PIC_URL } from "@/utils/constant";
 export const Navbar = () => {
   const [menuClicked, setMenuClicked] = useState(false);
 
-  const handleMenuClick = () => {
-    setMenuClicked((prev) => !prev);
-  };
-
   return (
-    <nav className="relative z-10 px-4 py-5 lg:py-6 flex items-center justify-between rounded-full mt-5 backdrop-blur-lg">
+    <nav
+      className={`relative z-10 px-4 py-5 lg:py-6 flex items-center justify-between rounded-full mt-5 `}
+    >
       <h1 className="text-2xl font-bold">Movie Matrix</h1>
 
       {/* Links for Desktop */}
@@ -32,11 +30,7 @@ export const Navbar = () => {
         {/* Profile Picture */}
         <div className="max-lg:hidden">
           <Avatar>
-            <AvatarImage
-              src={PROFILE_PIC_URL}
-              alt="pp"
-              className="w-10 h-10 rounded-full border"
-            />
+            <AvatarImage src={PROFILE_PIC_URL} alt="pp" className="w-10 h-10 rounded-full border" />
             <AvatarFallback>Profile Picture</AvatarFallback>
           </Avatar>
         </div>
@@ -48,7 +42,7 @@ export const Navbar = () => {
             className="text-3xl lg:hidden relative z-10"
           />
         ) : (
-          <RxHamburgerMenu onClick={handleMenuClick} className="text-3xl lg:hidden" />
+          <RxHamburgerMenu onClick={() => setMenuClicked(true)} className="text-3xl lg:hidden" />
         )}
       </div>
 
