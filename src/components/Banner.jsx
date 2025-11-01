@@ -10,7 +10,7 @@ import {
 import { Info, Play, Star } from "lucide-react";
 import { Button } from "./ui/button";
 
-const Hero = ({ data }) => {
+const Banner = ({ data }) => {
   // State to manage overview text expansion
   const [overviewClicked, setOverviewClicked] = useState(false);
 
@@ -105,4 +105,4 @@ const Hero = ({ data }) => {
   );
 };
 
-export default Hero;
+export default Banner;
