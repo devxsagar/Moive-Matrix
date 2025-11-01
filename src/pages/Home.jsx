@@ -2,9 +2,10 @@ import Hero from "@/components/Hero";
 import { API_OPTIONS } from "@/utils/constant";
 import React, { useEffect, useState } from "react";
 import Details from "./Details";
+import TrendingMovies from "@/sections/TrendingMovies";
 
 const Home = () => {
-    const [ trendingData, setTrendingData ] = useState(null);
+  const [trendingData, setTrendingData] = useState(null);
 
   const getData = async () => {
     const fetchData = await fetch(
@@ -16,13 +17,14 @@ const Home = () => {
     console.log(data);
   };
 
- useEffect(() => {
+  useEffect(() => {
     getData();
   }, []);
 
   return (
-    <div >
+    <div>
       <Hero data={trendingData} />
+      <TrendingMovies />
     </div>
   );
 };

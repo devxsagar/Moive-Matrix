@@ -20,7 +20,7 @@ const Hero = ({ data }) => {
   }
 
   return (
-      <div className="fixed left-1/2 -translate-x-1/2 top-0  w-full max-w-[1536px]">
+      <div className="absolute left-1/2 -translate-x-1/2 top-0  w-full max-w-[1536px]">
         <Carousel className="relative">
           {/* Carousel Content */}
           <CarouselContent>
@@ -29,15 +29,17 @@ const Hero = ({ data }) => {
               return (
                 <CarouselItem key={index}>
                   {/* Hero Image */}
-                  <div className="w-full  mx-auto h-[70vh] lg:h-screen relative">
+                  <div className="w-full mx-auto h-[70vh] lg:h-screen relative">
                     <img
                       src={IMAGE_URL + item.backdrop_path}
                       alt="backdrop"
                       loading="lazy"
-                      className="h-full w-full object-cover object-center lg:object-top"
+                      className=" w-full h-full object-cover object-center lg:object-top"
                     />
                     {/* Overlay */}
                     <div className="absolute inset-0 z-80 w-full h-full bg-black/40" />
+
+                    <div className="absolute left-0 bottom-0 z-80 w-full h-30 bg-gradient-to-b from-transparent to-black" />
 
                     {/* Text Content */}
                     <div className="max-w-4xl absolute  left-0 bottom-4 md:left-25 md:bottom-20 xl:left-40 xl:top-1/2 xl:-translate-y-1/2 z-90 p-5">
