@@ -21,7 +21,7 @@ const useSectionFetch = ({ category, mediaType, page = 1 }) => {
   };
   useEffect(() => {
     getData();
-  }, []);
+  }, [page]);
 
   return data;
 };

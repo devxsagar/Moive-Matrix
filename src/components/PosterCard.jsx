@@ -3,7 +3,7 @@ import { IMAGE_URL } from "@/utils/constant";
 
 const PosterCard = ({ posterPath, movieTitle, movieName }) => {
   return (
-    <div>
+    <div className="flex flex-col items-center">
       <img
         src={IMAGE_URL + posterPath}
         alt={movieTitle || movieName}
