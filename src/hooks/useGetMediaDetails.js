@@ -10,7 +10,7 @@ const useGetMediaDetails = (mediaType, id) => {
 
         const response = await fetch(url, API_OPTIONS);
         const json = await response.json();
-        setData(json.response);
+        setData(json);
     }
 
     useEffect(() => {
