@@ -5,6 +5,7 @@ import TVShows from "./pages/TVShows";
 import Movies from "./pages/Movies";
 import Explore from "./components/Explore";
 import Details from "./pages/Details";
+import PageNotFound from "./pages/PageNotFound";
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,8 @@ const router = createBrowserRouter([
       { path: "/movies", element: <Movies /> },
       { path: "/explore/:mediaType/:category", element: <Explore /> },
       { path: "/details/:mediaType/:title/:id", element: <Details /> },
+
+      { path: "*", element: <PageNotFound /> },
     ],
   },
 ]);
