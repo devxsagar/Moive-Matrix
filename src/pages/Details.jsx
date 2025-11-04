@@ -7,6 +7,7 @@ import useMediaCredits from "@/hooks/useMediaCredits";
 import ExploreCast from "@/sections/ExploreCast";
 import ExploreMediaImages from "@/sections/ExploreMediaImages";
 import ExploreSimilarMedia from "@/sections/ExploreSimilarMedia";
+import ExploreRecommendation from "@/sections/ExploreRecommendation";
 
 const Details = () => {
   // Get details from explore and section carousel
@@ -43,6 +44,8 @@ const Details = () => {
       <ExploreMediaImages mediaType={mediaType} id={id} />
 
       <ExploreSimilarMedia mediaType={mediaType} id={id} />
+
+      <ExploreRecommendation mediaType={mediaType} id={id} />
     </section>
   );
 };

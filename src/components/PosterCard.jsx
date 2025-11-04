@@ -5,11 +5,13 @@ import { useNavigate } from "react-router-dom";
 const PosterCard = ({ posterPath, movieTitle, movieName, mediaType, id }) => {
   const navigate = useNavigate();
 
+  const handleNavigation = () => {
+    navigate(`/details/${mediaType}/${movieName || movieTitle}/${id}`);
+    window.scrollTo(top, "smooth");
+  };
+
   return (
-    <div
-      className="flex flex-col items-center"
-      onClick={() => navigate(`/details/${mediaType}/${movieName || movieTitle}/${id}`)}
-    >
+    <div className="flex flex-col items-center" onClick={handleNavigation}>
       <img
         src={IMAGE_URL + posterPath}
         alt={movieTitle || movieName}
