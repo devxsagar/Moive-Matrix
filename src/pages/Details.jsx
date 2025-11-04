@@ -5,6 +5,7 @@ import useGetMediaDetails from "@/hooks/useGetMediaDetails";
 import ExploreMediaInfo from "@/components/ExploreMediaInfo";
 import useMediaCredits from "@/hooks/useMediaCredits";
 import ExploreCast from "@/components/ExploreCast";
+import ExploreMediaImages from "@/components/ExploreMediaImages";
 
 const Details = () => {
   // Get details from explore and section carousel
@@ -17,7 +18,6 @@ const Details = () => {
     return <div>Loading...</div>;
   }
 
-  console.log(cast);
 
   return (
     <section className="pt-10 pb-20">
@@ -39,6 +39,8 @@ const Details = () => {
       </div>
 
       <ExploreCast cast={cast} />
+
+      <ExploreMediaImages mediaType={mediaType} id={id} />
     </section>
   );
 };

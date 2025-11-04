@@ -12,7 +12,6 @@ const ExploreCast = ({ cast }) => {
       <div className="grid grid-cols-3 md:grid-cols-6 lg:grid-cols-7  xl:grid-cols-9 items-center gap-5 mt-2">
         {cast.length > 0 &&
           cast?.slice(0, showMore ? cast.length : 18)?.map((member) => {
-            console.log(member);
             return (
               <div key={member?.id}>
                 <div className="flex flex-col items-center text-center">
