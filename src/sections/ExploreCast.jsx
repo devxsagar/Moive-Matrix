@@ -5,15 +5,17 @@ import React, { useState } from "react";
 const ExploreCast = ({ cast }) => {
   const [showMore, setShowMore] = useState(false);
 
+  console.log(cast);
+
   return (
     <div className="mt-15">
       <h2 className="text-2xl font-semibold tracking-tight">Cast</h2>
       {/* Cast List */}
-      <div className="grid grid-cols-3 md:grid-cols-6 lg:grid-cols-7  xl:grid-cols-9 items-center gap-5 mt-2">
+      <div className="grid items-start grid-cols-3 md:grid-cols-6 lg:grid-cols-7  xl:grid-cols-9  gap-5 mt-2 ">
         {cast.length > 0 &&
           cast?.slice(0, showMore ? cast.length : 18)?.map((member) => {
             return (
-              <div key={member?.id}>
+              <div key={member?.id} >
                 <div className="flex flex-col items-center text-center">
                   <Avatar>
                     <AvatarImage
@@ -29,7 +31,10 @@ const ExploreCast = ({ cast }) => {
                       />
                     </AvatarFallback>
                   </Avatar>
-                  <p className="text-xs md:text-sm mt-1">{member?.name}</p>
+                  <div>
+                    <p className="text-xs md:text-sm mt-1 ">{member?.name}</p>
+                    <p className="text-xs md:text-sm mt-0.5 text-gray">{member?.character}</p>
+                  </div>
                 </div>
               </div>
             );
