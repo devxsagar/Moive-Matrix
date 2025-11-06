@@ -1,18 +1,42 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import NavLinks from "./NavLinks";
 import { Input } from "./ui/input";
 import { IoSearch } from "react-icons/io5";
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import { RxCross2, RxHamburgerMenu } from "react-icons/rx";
 import { PROFILE_PIC_URL } from "@/utils/constant";
+import SearchResult from "./SearchResult";
 
 export const Navbar = () => {
   const [menuClicked, setMenuClicked] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [showSearchResultBox, setShowSearchResultBox] = useState(false);
+
+  const inputRef = useRef(null);
+
+  const handleClickOutside = (ref, cb) => {
+    useEffect(() => {
+      const handleClick = (e) => {
+        if (ref.current && !ref.current.contains(e.target)) {
+          cb();
+        }
+      };
+
+      document.addEventListener("mousedown", handleClick);
+
+      return () => {
+        document.removeEventListener("mousedown", handleClick);
+      };
+    }, [ref, cb]);
+  };
+
+  // Close search result box on click outside
+  handleClickOutside(inputRef, () => {
+    setShowSearchResultBox(false);
+  });
 
   return (
-    <nav
-      className={`relative z-10 flex items-center justify-between rounded-full mt-5 `}
-    >
+    <nav className={`relative z-10 flex items-center justify-between rounded-full mt-5 `}>
       {/* <h1 className="text-2xl font-bold">Movie Matrix</h1> */}
       <img src="/logo.png" alt="logo" className="w-8" />
 
@@ -23,9 +47,23 @@ export const Navbar = () => {
 
       {/* Search Bar, Profile Picture (for Desktop) and Hamburger Menu(for Mobile) */}
       <div className="flex items-center gap-6">
-        <div className="relative flex items-center max-md:hidden">
-          <Input placeholder="Search movies..." className="pl-10" />
+        <div className="relative flex items-center">
+          <Input
+            ref={inputRef}
+            placeholder="Search movies..."
+            className="pl-10 w-56  md:w-xs"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            onFocus={() => setShowSearchResultBox(true)}
+          />
           <IoSearch className="absolute top-1/2 -translate-y-1/2 left-3" />
+
+          <SearchResult
+            inputRef={inputRef}
+            searchQuery={searchQuery}
+            showSearchResultBox={showSearchResultBox}
+            setShowSearchResultBox={setShowSearchResultBox}
+          />
         </div>
 
         {/* Profile Picture */}
