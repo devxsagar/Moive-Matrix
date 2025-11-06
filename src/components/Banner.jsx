@@ -1,5 +1,5 @@
 import { IMAGE_URL } from "@/utils/constant";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Carousel,
   CarouselContent,
@@ -17,13 +17,24 @@ const Banner = ({ data }) => {
   const [overviewClicked, setOverviewClicked] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const [showTrailer, setShowTrailer] = useState(false);
+  const [api, setApi] = useState(null);
+
+  useEffect(() => {
+    if (!api) return;
+
+    const interval = setInterval(() => {
+      api.scrollNext();
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [api]);
 
   return !data || data.length === 0 ? (
     <Skeleton className="absolute left-1/2 -translate-x-1/2 top-0 w-full max-w-[1536px] h-[70vh] lg:h-screen bg-black/70" />
   ) : (
     <div>
       <div className="absolute left-1/2 -translate-x-1/2 top-0  w-full max-w-[1536px]">
-        <Carousel className="relative">
+        <Carousel className="relative" setApi={setApi} opts={{loop: true}}>
           {/* Carousel Content */}
           <CarouselContent>
             {/* Map through trendingData to create CarouselItems */}
