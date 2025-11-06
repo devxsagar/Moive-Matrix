@@ -1,9 +1,11 @@
 import { API_OPTIONS } from "@/utils/constant";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const useSearchMedia = (query, page) => {
   const [searchData, setSearchData] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const prevQueryRef = useRef("");
 
   useEffect(() => {
     if (!query) return;
@@ -18,13 +20,20 @@ const useSearchMedia = (query, page) => {
         const json = await res.json();
         const filteredResults = json.results.filter((result) => result.media_type !== "person");
 
-        // if it's the first page, set the search data directly
-        // else, append to the existing search data
-        if (page === 1) {
+        // If the query changed, reset data instead of appending
+        if (prevQueryRef.current !== query) {
           setSearchData(filteredResults);
         } else {
-          setSearchData((prevResults) => [...prevResults, ...filteredResults]);
+          // If same query, append only when page > 1
+          if (page > 1) {
+            setSearchData((prevResults) => [...prevResults, ...filteredResults]);
+          } else {
+            setSearchData(filteredResults);
+          }
         }
+
+        // Update previous query reference
+        prevQueryRef.current = query;
       } catch (err) {
         console.error("Search error:", err);
       } finally {

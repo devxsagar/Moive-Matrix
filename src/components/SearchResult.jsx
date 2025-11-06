@@ -3,7 +3,7 @@ import { IMAGE_URL } from "@/utils/constant";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const SearchResult = ({ inputRef, showSearchResultBox, setShowSearchResultBox, searchQuery }) => {
+const SearchResult = ({ inputRef, showSearchResultBox, setShowSearchResultBox, searchQuery, setSearchQuery }) => {
   const [debouncedQuery, setDebouncedQuery] = useState("");
   const [page, setPage] = useState(1);
 
@@ -25,10 +25,16 @@ const SearchResult = ({ inputRef, showSearchResultBox, setShowSearchResultBox, s
     }
   };
 
+  // reset page when query changes
+  useEffect(() => {
+    setPage(1);
+  }, [debouncedQuery]);
+
   const handleNavigation = (mediaType, movieTitle, movieName, id) => {
     navigate(`/details/${mediaType}/${movieName || movieTitle}/${id}`);
-    window.scrollTo(top, "smooth");
+    window.scrollTo({ top: 0, behavior: "smooth" });
     setShowSearchResultBox(false);
+    setSearchQuery("");
   };
 
   return (
@@ -65,9 +71,10 @@ const SearchResult = ({ inputRef, showSearchResultBox, setShowSearchResultBox, s
           </div>
         )}
 
+       {/* show more button  */}
         {debouncedQuery !== "" && (
           <div className="text-center mt-2 cursor-pointer" onClick={handleShowMore}>
-            show more
+            {searchResult?.length > 0 ? "show more" : "Nohting is found"}
           </div>
         )}
       </div>

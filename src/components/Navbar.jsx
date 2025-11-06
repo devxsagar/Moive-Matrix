@@ -61,6 +61,7 @@ export const Navbar = () => {
           <SearchResult
             inputRef={inputRef}
             searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
             showSearchResultBox={showSearchResultBox}
             setShowSearchResultBox={setShowSearchResultBox}
           />
