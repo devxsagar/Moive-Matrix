@@ -5,7 +5,7 @@ const PosterCardSkeleton = () => {
   return (
     <div className="flex flex-col">
       {/* Poster */}
-      <Skeleton className="h-50 w-full rounded-lg" />
+      <Skeleton className="h-50  rounded-lg" />
 
       {/* Title */}
       <Skeleton className="h-4 w-24 mt-2 rounded" />

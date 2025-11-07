@@ -17,8 +17,6 @@
     const { data: mediaDetails, loading } = useGetMediaDetails(mediaType, id);
     const { directors, cast } = useMediaCredits(mediaType, id);
 
-    console.log(mediaDetails);
-
     return (loading || !directors || !cast) ? (
       <DetailsSkeleton />
     ) : (

@@ -10,6 +10,19 @@ const ExploreMediaInfo = ({ mediaDetails, directors, cast, mediaType, id }) => {
 
   const releaseDate = mediaDetails?.release_date || mediaDetails?.first_air_date;
 
+  const runTimeForMovies =
+    mediaDetails?.runtime && mediaDetails?.runtime < 60
+      ? mediaDetails?.runtime + "min"
+      : Math.floor(mediaDetails?.runtime / 60) + "h " + (mediaDetails?.runtime % 60) + "min";
+
+  const runTimeForSeries =
+    mediaDetails?.last_episode_to_air?.runtime < 60
+      ? mediaDetails?.last_episode_to_air?.runtime + "min"
+      : Math.floor(mediaDetails?.last_episode_to_air?.runtime / 60) +
+        "h " +
+        (mediaDetails?.last_episode_to_air?.runtime % 60) +
+        "min";
+
   return (
     <div>
       <h2 className="text-5xl font-semibold tracking-tight">
@@ -24,7 +37,7 @@ const ExploreMediaInfo = ({ mediaDetails, directors, cast, mediaType, id }) => {
         <span className="text-gray">•</span>
 
         <p className="text-gray">
-          {mediaDetails?.runtime || "N/A" || mediaDetails?.episode_run_time} min
+          {mediaType === "movie" ? runTimeForMovies : runTimeForSeries || "N/A min"}
         </p>
 
         <span className="text-gray">•</span>
@@ -66,7 +79,14 @@ const ExploreMediaInfo = ({ mediaDetails, directors, cast, mediaType, id }) => {
         </Button>
       </div>
 
-      {showTrailer && <Trailer mediaType={mediaType} id={id} setShowTrailer={setShowTrailer} name={mediaDetails?.title || mediaDetails?.name} />}
+      {showTrailer && (
+        <Trailer
+          mediaType={mediaType}
+          id={id}
+          setShowTrailer={setShowTrailer}
+          name={mediaDetails?.title || mediaDetails?.name}
+        />
+      )}
     </div>
   );
 };

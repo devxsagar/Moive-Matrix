@@ -44,7 +44,7 @@ const useSearchMedia = (query, page) => {
     fetchSearchData();
   }, [query, page]);
 
-  return searchData;
+  return {searchData, loading};
 };
 
 export default useSearchMedia;

@@ -17,7 +17,7 @@ const PosterCard = ({ posterPath, movieTitle, movieName, mediaType, id, releaseD
 
   return (
     <motion.div
-      className="flex flex-col cursor-pointer"
+      className="flex flex-col cursor-pointer max-w-34"
       onClick={handleNavigation}
       initial={{ scale: 1 }}
       whileHover={{ scale: 0.95 }}
@@ -28,7 +28,7 @@ const PosterCard = ({ posterPath, movieTitle, movieName, mediaType, id, releaseD
         src={IMAGE_URL + posterPath}
         alt={movieTitle || movieName}
         loading="lazy"
-        className="h-50 rounded-lg"
+        className="h-50 rounded-lg object-cover"
       />
       <p className="text-sm line-clamp-1 text-left tracking-wide leading-5 px-0.5 mt-2">
         {movieTitle || movieName}

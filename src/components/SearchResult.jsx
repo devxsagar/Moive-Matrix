@@ -3,13 +3,20 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import useSearchMedia from "@/hooks/useSearchMedia";
 import { IMAGE_URL } from "@/utils/constant";
+import SearchResultCardSkeleton from "./skeleton/SearchResultCardSkeleton";
 
-const SearchResult = ({ inputRef, showSearchResultBox, setShowSearchResultBox, searchQuery, setSearchQuery }) => {
+const SearchResult = ({
+  inputRef,
+  showSearchResultBox,
+  setShowSearchResultBox,
+  searchQuery,
+  setSearchQuery,
+}) => {
   const [debouncedQuery, setDebouncedQuery] = useState("");
   const [page, setPage] = useState(1);
 
   const navigate = useNavigate();
-  const searchResult = useSearchMedia(debouncedQuery, page);
+  const { searchData: searchResult, loading } = useSearchMedia(debouncedQuery, page);
 
   // debouncing
   useEffect(() => {
@@ -50,6 +57,8 @@ const SearchResult = ({ inputRef, showSearchResultBox, setShowSearchResultBox, s
       >
         {debouncedQuery === "" ? (
           <div className="text-center">Search for a movie or show</div>
+        ) : loading ? (
+          <SearchResultCardSkeleton />
         ) : (
           <div className="space-y-3">
             {searchResult?.length > 0 &&
@@ -64,7 +73,7 @@ const SearchResult = ({ inputRef, showSearchResultBox, setShowSearchResultBox, s
                     initial={{ opacity: 0, scale: 0.8 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
-                    whileHover={{ scale: 1.05}}  
+                    whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     transition={{ duration: 0.5, ease: "easeInOut" }}
                   >
@@ -74,7 +83,9 @@ const SearchResult = ({ inputRef, showSearchResultBox, setShowSearchResultBox, s
                       className="h-20 rounded-lg"
                     />
                     <div>
-                      <p className="font-bold text-xs md:text-base">{media?.title || media?.name}</p>
+                      <p className="font-bold text-xs md:text-base">
+                        {media?.title || media?.name}
+                      </p>
                     </div>
                   </motion.div>
                 );
@@ -82,10 +93,14 @@ const SearchResult = ({ inputRef, showSearchResultBox, setShowSearchResultBox, s
           </div>
         )}
 
-       {/* show more button  */}
+        {/* show more button  */}
         {debouncedQuery !== "" && (
           <div className="text-center mt-2 cursor-pointer" onClick={handleShowMore}>
-            {searchResult?.length > 0 ? <span className="hover:text-red hover:underline hover-animation">show more</span>  : <span>Nohting is found</span >}
+            {searchResult?.length > 0 ? (
+              <span className="hover:text-red hover:underline hover-animation">show more</span>
+            ) : (
+              <span>Nohting is found</span>
+            )}
           </div>
         )}
       </motion.div>

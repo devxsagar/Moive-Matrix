@@ -32,7 +32,7 @@ const Explore = () => {
 
       {/* Content */}
       <div className="mt-8 mb-16">
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-10">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-x-10 gap-y-15 place-items-center">
           {data.map((item) => {
             return (
               <PosterCard
@@ -42,6 +42,8 @@ const Explore = () => {
                 movieName={item.name}
                 id={item.id}
                 mediaType={mediaType}
+                releaseDate={item.release_date || item.first_air_date}
+                rating={item.vote_average}
               />
             );
           })}
