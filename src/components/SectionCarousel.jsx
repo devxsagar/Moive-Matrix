@@ -28,7 +28,7 @@ const SectionCarousel = ({ data, mediaType }) => {
                   movieTitle={movie.title}
                   movieName={movie.name}
                   mediaType={mediaType}
-                  releaseDate={movie.release_date}
+                  releaseDate={movie.release_date || movie.first_air_date}
                   rating={movie.vote_average}
                   id={movie.id}
                 />
