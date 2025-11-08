@@ -13,7 +13,6 @@ import {
 } from "@/store/myListSlice";
 import {
   Tooltip,
-  TooltipArrow,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
@@ -21,7 +20,6 @@ import {
 
 const ExploreMediaInfo = ({ mediaDetails, directors, cast, mediaType, id }) => {
   const [showTrailer, setShowTrailer] = useState(false);
-  // const [isInWatchList, setIsInWatchList] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -63,7 +61,7 @@ const ExploreMediaInfo = ({ mediaDetails, directors, cast, mediaType, id }) => {
 
   return (
     <div>
-      <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight">
+      <h2 className="text-3xl md:text-4xl lg:text-5xl font-clash font-semibold tracking-tight">
         {mediaDetails?.title || mediaDetails?.name}
       </h2>
       <div className="flex items-center gap-3 md:gap-5 mt-2 text-sm md:text-base">

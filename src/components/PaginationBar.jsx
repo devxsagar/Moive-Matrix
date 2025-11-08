@@ -61,7 +61,7 @@ const PaginationBar = ({ page, setPage }) => {
         <PaginationItem>
           <PaginationLink
             isActive
-            className="bg-red border-none text-white hover:bg-red hover:text-white rounded-md"
+            className="bg-red! border-none text-white hover:bg-red! hover:text-white! rounded-md"
             href="#"
           >
             {page}

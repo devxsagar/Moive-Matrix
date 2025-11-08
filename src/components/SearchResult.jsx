@@ -50,7 +50,7 @@ const SearchResult = ({
     showSearchResultBox && (
       <motion.div
         ref={inputRef}
-        className="absolute top-10 left-0 w-full min-h-[10vh] max-h-[60vh] bg-white/80 overflow-y-scroll scrollbar-none  rounded-xl text-black p-5"
+        className="absolute top-10 left-0 w-full min-h-[10vh] max-h-[60vh] bg-black/40 backdrop-blur-lg overflow-y-scroll scrollbar-none  rounded-xl text-gray p-5"
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: "easeInOut" }}
@@ -95,7 +95,7 @@ const SearchResult = ({
 
         {/* show more button  */}
         {debouncedQuery !== "" && (
-          <div className="text-center mt-2 cursor-pointer" onClick={handleShowMore}>
+          <div className="text-center mt-2 cursor-pointer text-gray" onClick={handleShowMore}>
             {searchResult?.length > 0 ? (
               <span className="hover:text-red hover:underline hover-animation">show more</span>
             ) : (

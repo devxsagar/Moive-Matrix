@@ -56,7 +56,7 @@ const Banner = ({ data }) => {
 
                     {/* Text Content */}
                     <div className="max-w-4xl absolute  left-0 bottom-4 md:left-25 md:bottom-20 xl:left-40 xl:top-1/2 xl:-translate-y-1/2 z-90 p-5">
-                      <h3 className="text-2xl md:text-5xl lg:text-7xl font-semibold tracking-tight">
+                      <h3 className="text-2xl md:text-5xl lg:text-7xl font-clash font-semibold tracking-tight">
                         {item.title || item.name}
                       </h3>
                       <p
@@ -90,7 +90,7 @@ const Banner = ({ data }) => {
 
                       <div className="flex gap-4 mt-6 md:mt-8">
                         <Button
-                          className=" bg-red text-white w-30 md:w-36 lg:w-48 py-5 md:py-6 lg:py-8 rounded-md text-xs md:text-sm lg:text-lg font-medium cursor-pointer"
+                          className=" bg-red text-white w-30 md:w-36 lg:w-48 py-5 md:py-6 lg:py-8 text-xs md:text-sm lg:text-lg font-medium cursor-pointer rounded-full"
                           onClick={() => {
                             setSelectedItem(item);
                             setShowTrailer(true);
@@ -101,7 +101,7 @@ const Banner = ({ data }) => {
                         </Button>
                         <Button
                           variant="outline"
-                          className="bg-white text-black w-30 md:w-36 lg:w-48 py-5 md:py-6 lg:py-8 rounded-md text-xs md:text-sm lg:text-lg font-medium cursor-pointer"
+                          className="bg-white! text-black hover:text-black/90w-30 md:w-36 lg:w-48 py-5 md:py-6 lg:py-8 text-xs md:text-sm lg:text-lg font-medium cursor-pointer rounded-full"
                         >
                           <Info />
                           Info
@@ -115,8 +115,8 @@ const Banner = ({ data }) => {
           </CarouselContent>
 
           {/* Carousel Navigation Buttons */}
-          <CarouselPrevious className="absolute left-5 bg-transparent" />
-          <CarouselNext className="absolute right-5 bg-transparent" />
+          <CarouselPrevious className="absolute left-5 bg-transparent max-lg:hidden" />
+          <CarouselNext className="absolute right-5 bg-transparent max-lg:hidden" />
         </Carousel>
       </div>
 

@@ -52,7 +52,7 @@ export const Navbar = () => {
           <Input
             ref={inputRef}
             placeholder="Search movies..."
-            className="pl-10 w-56  md:w-xs"
+            className="pl-10 w-56 md:w-xs outline-none rounded-full"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             onFocus={() => setShowSearchResultBox(true)}

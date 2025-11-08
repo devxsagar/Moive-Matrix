@@ -15,12 +15,12 @@ const MyList = () => {
   const data = mediaType === "movie" ? movies : tvSeries;
 
   const handleRemove = (id) => {
-    if(mediaType === "movie"){
-        dispatch(removeMovieFromList(id))
+    if (mediaType === "movie") {
+      dispatch(removeMovieFromList(id));
     } else {
-        dispatch(removeTvSeriesFromList(id))
+      dispatch(removeTvSeriesFromList(id));
     }
-  }
+  };
 
   return (
     <div className="pt-15 pb-15 min-h-screen">
@@ -31,13 +31,13 @@ const MyList = () => {
 
       <div className="mt-8 flex items-center justify-center gap-x-5">
         <Button
-          className={`bg-transparent hover:bg-transparent cursor-pointer ${mediaType === "movie" && "text-red"}`}
+          className={`bg-transparent hover:bg-transparent text-white cursor-pointer ${mediaType === "movie" && "text-red  underline  underline-offset-8 decoration-2"}`}
           onClick={() => setMediaType("movie")}
         >
           Movies
         </Button>
         <Button
-          className={`bg-transparent hover:bg-transparent cursor-pointer ${mediaType === "tv" && "text-red"}`}
+          className={`bg-transparent hover:bg-transparent text-white cursor-pointer ${mediaType === "tv" && "text-red underline  underline-offset-8 decoration-2"}`}
           onClick={() => setMediaType("tv")}
         >
           TV Series
@@ -46,10 +46,15 @@ const MyList = () => {
 
       {/* Content */}
       {data.length > 0 ? (
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-x-10 gap-y-15 place-items-center mt-5">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-x-10 gap-y-15 place-items-center mt-10">
           {data.map((item) => {
             return (
-              <motion.div key={item.id} initial="initial" whileHover="hovered">
+              <motion.div
+                key={item.id}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, ease: "easeInOut" }}
+              >
                 <PosterCard
                   key={item.id}
                   posterPath={item.poster_path}
@@ -61,12 +66,15 @@ const MyList = () => {
                   rating={item.vote_average}
                 />
                 <motion.div
-                  variants={{ initial: { scale: 1 }, hovered: { scale: 0.95 } }}
+                  initial={{ scale: 1 }}
+                  whileHover={{ scale: 0.95 }}
                   transition={{ duration: 0.3, ease: "easeInOut" }}
-                  className="border rounded-full mt-2 cursor-pointer  flex items-center justify-center"
+                  className="rounded-full mt-2 cursor-pointer  flex items-center justify-center"
                   onClick={() => handleRemove(item.id)}
                 >
-                  <Button>Remove</Button>
+                  <Button variant="destructive" className="w-full cursor-pointer">
+                    Remove
+                  </Button>
                 </motion.div>
               </motion.div>
             );
