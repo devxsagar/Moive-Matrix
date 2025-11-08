@@ -7,8 +7,6 @@ const ExploreReview = ({ mediaType, id }) => {
 
   const { reviews, loading } = useReviews(mediaType, id);
 
-  console.log(reviews);
-
   return (
     reviews.length > 0 && (
       <div className="mt-15">

@@ -2,16 +2,29 @@ import React, { useState } from "react";
 import ExploreMediaRating from "./ExploreMediaRating";
 import ExploreMediaAdditionalInfo from "./ExploreMediaAdditionalInfo";
 import { Button } from "./ui/button";
-import { Play, Plus } from "lucide-react";
+import { Bookmark,  Play } from "lucide-react";
 import Trailer from "@/sections/Trailer";
-import { useDispatch } from "react-redux";
-import { addMovieToList, addTvSeriesToList } from "@/store/myListSlice";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addMovieToList,
+  addTvSeriesToList,
+  removeMovieFromList,
+  removeTvSeriesFromList,
+} from "@/store/myListSlice";
+import {
+  Tooltip,
+  TooltipArrow,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@radix-ui/react-tooltip";
 
 const ExploreMediaInfo = ({ mediaDetails, directors, cast, mediaType, id }) => {
   const [showTrailer, setShowTrailer] = useState(false);
+  // const [isInWatchList, setIsInWatchList] = useState(false);
 
   const dispatch = useDispatch();
-  
+
   const releaseDate = mediaDetails?.release_date || mediaDetails?.first_air_date;
 
   const runTimeForMovies =
@@ -27,13 +40,26 @@ const ExploreMediaInfo = ({ mediaDetails, directors, cast, mediaType, id }) => {
         (mediaDetails?.last_episode_to_air?.runtime % 60) +
         "min";
 
-  const handleWatchListButton = () => {
-    if(mediaType === "movie") {
-      dispatch(addMovieToList(mediaDetails));
+  const handleWatchListButton = (type) => {
+    if (type === "remove") {
+      if (mediaType === "movie") {
+        dispatch(removeMovieFromList(Number(id)));
+      } else {
+        dispatch(removeTvSeriesFromList(Number(id)));
+      }
     } else {
-      dispatch(addTvSeriesToList(mediaDetails));
+      if (mediaType === "movie") {
+        dispatch(addMovieToList(mediaDetails));
+      } else {
+        dispatch(addTvSeriesToList(mediaDetails));
+      }
     }
-  }
+  };
+
+  const { movies, tvSeries } = useSelector((state) => state.myList);
+
+  const isInWatchlist =
+    movies.find((movie) => movie.id === Number(id)) || tvSeries.find((tv) => tv.id === Number(id));
 
   return (
     <div>
@@ -73,23 +99,52 @@ const ExploreMediaInfo = ({ mediaDetails, directors, cast, mediaType, id }) => {
       </div>
 
       {/* Buttons */}
-      <div className="mt-15 space-x-5">
+      <div className="mt-15 space-x-5 flex items-center">
         <Button
-          className="font-semibold px-5 py-8 text-white text-base lg:text-lg bg-red hover:bg-red/80 cursor-pointer"
+          className="px-3 py-7 lg:px-5 lg:py-8 text-sm lg:text-lg text-white bg-red hover:bg-red/80 cursor-pointer rounded-full"
           variant="secondary"
           onClick={() => setShowTrailer(true)}
         >
-          <Play className="mr-1" />
+          <Play className="ml-1" />
           Watch Trailer
         </Button>
-        <Button
-          className="font-semibold px-5 py-8 text-base lg:text-lg cursor-pointer"
-          variant="secondary"
-          onClick={handleWatchListButton}
-        >
-          <Plus className="mr-1" />
-          Watchlist
-        </Button>
+
+        {/* Watchlist Button */}
+        {isInWatchlist ? (
+          <TooltipProvider delayDuration={300}>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <button
+                  className=" p-4 rounded-full bg-gray/20 cursor-pointer"
+                  onClick={() => handleWatchListButton("remove")}
+                >
+                  {" "}
+                  <Bookmark fill="white" className="lg:w-8 lg:h-8" />
+                </button>
+              </TooltipTrigger>
+              <TooltipContent side="bottom">
+                <p>Remove from watchlist</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+        ) : (
+          <TooltipProvider delayDuration={300}>
+            <Tooltip>
+              <TooltipTrigger asChild>
+               <button
+                  className=" p-4 rounded-full bg-gray/20 cursor-pointer"
+                  onClick={() => handleWatchListButton("add")}
+                >
+                  {" "}
+                  <Bookmark className="lg:w-8 lg:h-8" />
+                </button>
+              </TooltipTrigger>
+              <TooltipContent side="bottom">
+                <p>Add to watchlist</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+        )}
       </div>
 
       {showTrailer && (
