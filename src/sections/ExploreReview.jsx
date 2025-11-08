@@ -25,17 +25,19 @@ const ExploreReview = ({ mediaType, id }) => {
                 rating={review.author_details.rating}
               />
             );
-          })}   
+          })}
         </div>
 
-        <div className="flex items-center justify-center mt-2">
-          <button
-            className="text-xs text-muted-foreground underline cursor-pointer hover:text-white  hover-animation"
-            onClick={() => setShowMore((prev) => !prev)}
-          >
-            {showMore ? "see less reviews" : "see more reviews"}
-          </button>
-        </div>
+        {reviews.length > 3 && (
+          <div className="flex items-center justify-center mt-2">
+            <button
+              className="text-xs text-muted-foreground underline cursor-pointer hover:text-white  hover-animation"
+              onClick={() => setShowMore((prev) => !prev)}
+            >
+              {showMore ? "see less reviews" : "see more reviews"}
+            </button>
+          </div>
+        )}
       </div>
     )
   );
