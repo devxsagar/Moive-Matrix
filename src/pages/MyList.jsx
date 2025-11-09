@@ -4,6 +4,7 @@ import { removeMovieFromList, removeTvSeriesFromList } from "@/store/myListSlice
 import { motion } from "framer-motion";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "sonner";
 
 const MyList = () => {
   const [mediaType, setMediaType] = useState("movie");
@@ -14,12 +15,14 @@ const MyList = () => {
   // UI shows based on mediaType
   const data = mediaType === "movie" ? movies : tvSeries;
 
-  const handleRemove = (id) => {
+  const handleRemove = (id, name, title) => {
     if (mediaType === "movie") {
       dispatch(removeMovieFromList(id));
     } else {
       dispatch(removeTvSeriesFromList(id));
     }
+
+    toast.success(`${title || name} Removed from Watchlist`);
   };
 
   return (
@@ -70,7 +73,7 @@ const MyList = () => {
                   whileHover={{ scale: 0.95 }}
                   transition={{ duration: 0.3, ease: "easeInOut" }}
                   className="rounded-full mt-2 cursor-pointer  flex items-center justify-center"
-                  onClick={() => handleRemove(item.id)}
+                  onClick={() => handleRemove(item.id, item.title, item.name)}
                 >
                   <Button variant="destructive" className="w-full cursor-pointer">
                     Remove

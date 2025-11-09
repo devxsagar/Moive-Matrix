@@ -17,6 +17,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@radix-ui/react-tooltip";
+import { toast } from "sonner";
 
 const ExploreMediaInfo = ({ mediaDetails, directors, cast, mediaType, id }) => {
   const [showTrailer, setShowTrailer] = useState(false);
@@ -45,12 +46,14 @@ const ExploreMediaInfo = ({ mediaDetails, directors, cast, mediaType, id }) => {
       } else {
         dispatch(removeTvSeriesFromList(Number(id)));
       }
+      toast.success(` ${mediaDetails?.title || mediaDetails?.name} Removed from Watchlist`);
     } else {
       if (mediaType === "movie") {
         dispatch(addMovieToList(mediaDetails));
       } else {
         dispatch(addTvSeriesToList(mediaDetails));
       }
+      toast.success(` ${mediaDetails?.title || mediaDetails?.name} Added to Watchlist` );
     }
   };
 

@@ -4,6 +4,7 @@ import { Outlet } from "react-router-dom";
 import Footer from "./components/Footer";
 import { Provider } from "react-redux";
 import store from "./store/store";
+import { Toaster } from "./components/ui/sonner";
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
           <Navbar />
           <Outlet />
           <Footer />
+          <Toaster position="bottom-right" toastOptions={{ duration: 3000 }}  />
         </div>
       </div>
     </Provider>
