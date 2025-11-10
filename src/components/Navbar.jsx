@@ -47,7 +47,6 @@ export const Navbar = () => {
       {/* Search Bar, Profile Picture (for Desktop) and Hamburger Menu(for Mobile) */}
       <div className="flex items-center gap-6">
         <motion.div
-          className="border"
           initial={{ scale: 1 }}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}

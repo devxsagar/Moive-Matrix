@@ -48,7 +48,7 @@ const SearchResult = ({
   return (
     showSearchResultBox && (
       <motion.div
-        className=" w-full overflow-y-scroll scrollbar-none  rounded-xl text-gray pb-2"
+        className=" w-full overflow-y-scroll scrollbar-none  rounded-xl text-gray pb-2 "
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: "easeInOut" }}
@@ -64,21 +64,21 @@ const SearchResult = ({
                 return (
                   <motion.div
                     key={media?.id}
-                    className="flex items-center gap-x-4 bg-white rounded-lg p-2 cursor-pointer"
+                    className="flex items-center gap-x-4 bg-white/80 rounded-lg p-2 cursor-pointer"
                     onClick={() =>
                       handleNavigation(media?.media_type, media?.title, media?.name, media?.id)
                     }
-                    initial={{ opacity: 0, scale: 0.8 }}
+                    initial={{ opacity: 0, scale: 0.8, color: "#3d3c3c" }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                    whileHover={{ scale: 0.95, color: "#e50914", }}
+                    whileTap={{ scale: 0.90 }}
                     transition={{ duration: 0.5, ease: "easeInOut" }}
                   >
                     <img
                       src={IMAGE_URL + media?.poster_path}
                       alt={media?.title || media?.name}
-                      className="h-20 rounded-lg"
+                      className="h-30 rounded-lg"
                     />
                     <div>
                       <p className="font-bold text-xs md:text-base">
