@@ -16,12 +16,12 @@ const SectionCarousel = ({ data, mediaType }) => {
   return (
     <div>
       <Carousel opts={{ slidesToScroll: screen > 1024 ? 4 : 2, dragFree: true }}>
-        <CarouselContent>
+        <CarouselContent className="py-4">
           {data.map((movie) => {
             return (
               <CarouselItem
                 key={movie.id}
-                className="basis-1/3 sm:basis-1/4 md:basis-1/5 lg:basis-1/6 xl:basis-1/8 "
+                className="basis-1/3 sm:basis-1/4 md:basis-1/5 lg:basis-1/6 xl:basis-1/8"
               >
                 <PosterCard
                   posterPath={movie.poster_path}

@@ -12,8 +12,8 @@ const SectionHeader = ({ title, mediaType, category }) => {
   };
 
   return (
-    <motion.div className="flex items-center justify-between mb-5">
-      <h3 className="uppercase tracking-wide  text-2xl font-semibold">{title}</h3>
+    <motion.div className="flex items-center justify-between mb-3">
+      <h3 className="uppercase tracking-wide text-lg md:text-xl  lg:text-2xl font-semibold">{title}</h3>
       <motion.p
         className="flex items-center gap-1 text-sm font-medium tracking-wide text-gray cursor-pointer hover:text-white hover-animation"
         onClick={handleViewAllButton}

@@ -28,7 +28,7 @@ const ExploreMediaImages = ({ mediaType, id }) => {
       {loading ? (
         <div className="mt-2">Loading...</div>
       ) : (
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 mt-2">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 mt-2 pt-4">
           {image?.slice(0, showMore ? imageLimit : 12).map((img, index) => {
             return (
               <div key={index} className="relative">

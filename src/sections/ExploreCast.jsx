@@ -14,7 +14,7 @@ const ExploreCast = ({ cast }) => {
           {cast.length > 0 &&
             cast?.slice(0, showMore ? cast.length : 18)?.map((member) => {
               return (
-                <div key={member?.id}>
+                <div key={member?.id} className="pt-4">
                   <div className="flex flex-col items-center text-center">
                     <Avatar>
                       <AvatarImage

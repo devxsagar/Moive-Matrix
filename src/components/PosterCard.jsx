@@ -18,17 +18,18 @@ const PosterCard = ({ posterPath, movieTitle, movieName, mediaType, id, releaseD
 
   return (
     <motion.div
-      initial={{ scale: 1 }}
-      whileHover={{ scale: 0.95 }}
+      initial={{ y: 0, color: "#ffffff" }}
+      whileHover={{ y: -10, color: "#e50914" }}
       whileTap={{ scale: 0.9 }}
       transition={{ duration: 0.3, ease: "easeInOut" }}
+      className="border border-black"
     >
       <motion.div className="flex flex-col cursor-pointer max-w-34" onClick={handleNavigation}>
         <img
           src={IMAGE_URL + posterPath}
           alt={movieTitle || movieName}
           loading="lazy"
-          className="h-50 rounded-lg object-cover"
+          className="h-50 rounded-lg"
         />
         <p className="text-sm line-clamp-1 text-left tracking-wide leading-5 px-0.5 mt-2">
           {movieTitle || movieName}
@@ -36,10 +37,10 @@ const PosterCard = ({ posterPath, movieTitle, movieName, mediaType, id, releaseD
 
         {/* Released Year and Rating */}
         <div className="flex items-center justify-between mt-2">
-          <span className="text-xs">{updatedReleaseDate}</span>
+          <span className="text-xs text-gray ">{updatedReleaseDate}</span>
           <div className="flex items-center">
             <Star color="#facc15" fill="#facc15" size={12} />
-            <span className="text-xs text-gray ml-2">{rating?.toFixed(1) || "N/A"}</span>
+            <span className="text-xs text-gray  ml-2">{rating?.toFixed(1) || "N/A"}</span>
           </div>
         </div>
       </motion.div>
