@@ -7,7 +7,7 @@ const TVShows = () => {
   const bannerData = useSectionFetch({ category: "on_the_air", mediaType: "tv" });
   return (
     <div>
-      <Banner data={bannerData} />
+      <Banner data={bannerData} mediaType="tv" />
       <div className="mt-[65vh] lg:mt-[95vh]">
         <MediaSection title="airing today" category="airing_today" mediaType="tv" />
         <MediaSection title="top rated" category="top_rated" mediaType="tv" />
