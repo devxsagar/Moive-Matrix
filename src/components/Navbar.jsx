@@ -15,12 +15,19 @@ export const Navbar = () => {
   const [showSearchBox, setShowSearchBox] = useState(false);
   const [showSearchResultBox, setShowSearchResultBox] = useState(false);
 
+  const searchBoxRef = useRef(null);
   const inputRef = useRef(null);
+
+  useEffect(() => {
+    if (showSearchBox && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [showSearchBox]);
 
   // Close search result box on click outside
   useEffect(() => {
     const handleClick = (e) => {
-      if (inputRef.current && !inputRef.current.contains(e.target)) {
+      if (searchBoxRef.current && !searchBoxRef.current.contains(e.target)) {
         setShowSearchBox(false);
         setSearchQuery("");
       }
@@ -50,7 +57,7 @@ export const Navbar = () => {
           initial={{ scale: 1 }}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
-          transition={{duration: 0.3, ease: "easeInOut"}}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
         >
           {!showSearchBox && (
             <IoSearch className="w-5 h-5 cursor-pointer" onClick={() => setShowSearchBox(true)} />
@@ -60,7 +67,7 @@ export const Navbar = () => {
         {/* Pop Up Search Box */}
         {showSearchBox && (
           <motion.div
-            ref={inputRef}
+            ref={searchBoxRef}
             className="fixed top-1/5 md:top-1/5 xl:top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/6 md:-translate-y-1/5 xl:-translate-y-1/5 z-50 w-[70vw]  xl:w-[40vw] max-h-[50vh] lg:max-h-[60vh] xl:max-h-[70vh] backdrop-blur-3xl px-5 py-5 rounded-2xl flex flex-col gap-y-5 items-center justify-start overflow-y-scroll scrollbar-none"
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -68,6 +75,7 @@ export const Navbar = () => {
           >
             <div className="relative w-full">
               <Input
+                ref={inputRef}
                 placeholder="Search movies..."
                 className="pl-10 bg-white/70! text-black  text-xs md:text-base w-full outline-none rounded-full"
                 value={searchQuery}
