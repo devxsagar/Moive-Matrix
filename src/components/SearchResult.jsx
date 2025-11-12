@@ -84,7 +84,7 @@ const SearchResult = ({ showSearchResultBox, setShowSearchBox, searchQuery, setS
                               media?.first_air_date?.split("-")[0]}
                           </p>
                         )}
-                        {media?.release_date && <span>·</span>}
+                        {(media?.release_date || media?.first_air_date) && <span>·</span>}
                         {media?.media_type && (
                           <p className="text-xs">
                             {media?.media_type === "movie" ? "Movie" : "Series"}
