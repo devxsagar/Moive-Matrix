@@ -1,4 +1,4 @@
-import { IMAGE_URL } from "@/utils/constant";
+import { BACKDROP_URL } from "@/utils/constant";
 import React, { useEffect, useState } from "react";
 import {
   Carousel,
@@ -72,7 +72,7 @@ const Banner = ({ data, mediaType }) => {
                   {/* Hero Image */}
                   <div className="w-full mx-auto h-[70vh] lg:h-screen relative">
                     <img
-                      src={IMAGE_URL + item.backdrop_path}
+                      src={BACKDROP_URL + item.backdrop_path}
                       alt="backdrop"
                       loading="lazy"
                       className=" w-full h-full object-cover object-center lg:object-top"

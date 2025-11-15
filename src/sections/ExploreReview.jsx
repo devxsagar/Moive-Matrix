@@ -18,7 +18,7 @@ const ExploreReview = ({ mediaType, id }) => {
         transition={{ duration: 0.6, ease: [0.4, 0.0, 0.2, 1] }}
       >
         <h2 className="text-2xl font-semibold tracking-tight mb-2">Reviews</h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 pt-4 place-items-center">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 pt-4 place-items-start">
           {reviews?.slice(0, showMore ? reviews.length : 3).map((review) => {
             return (
               <ReviewCard

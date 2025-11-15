@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import useGetMediaImage from "@/hooks/useGetMediaImage";
-import { IMAGE_URL } from "@/utils/constant";
+import { IMAGE_URL, LARGE_POSTER_URL } from "@/utils/constant";
 import ShowMoreButton from "../components/ShowMoreButton";
 import { motion } from "framer-motion";
 
@@ -39,7 +39,7 @@ const ExploreMediaImages = ({ mediaType, id }) => {
           {image?.slice(0, showMore ? imageLimit : 12).map((img, index) => {
             return (
               <div key={index} className="relative">
-                <img src={IMAGE_URL + img.file_path} alt={img.file_path} className="" />
+                <img src={LARGE_POSTER_URL + img.file_path} alt={img.file_path} className="" />
 
                 {/* More Image Overlay */}
                 {imageLimit > 12 && index === 11 && !showMore && (

@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { motion } from "framer-motion";
-import { IMAGE_URL } from "@/utils/constant";
+import { LARGE_POSTER_URL } from "@/utils/constant";
 import useGetMediaDetails from "@/hooks/useGetMediaDetails";
 import ExploreMediaInfo from "@/components/ExploreMediaInfo";
 import useMediaCredits from "@/hooks/useMediaCredits";
@@ -33,7 +33,7 @@ const Details = () => {
           transition={{ duration: 0.6, ease: [0.4, 0.0, 0.2, 1] }}
         >
           <img
-            src={IMAGE_URL + mediaDetails?.poster_path}
+            src={LARGE_POSTER_URL + mediaDetails?.poster_path}
             alt={mediaDetails?.title || mediaDetails?.name}
             loading="lazy"
             decoding="async"

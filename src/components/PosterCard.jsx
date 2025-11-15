@@ -1,9 +1,8 @@
 import React from "react";
-import { IMAGE_URL } from "@/utils/constant";
+import { POSTER_URL } from "@/utils/constant";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Star } from "lucide-react";
-import { Button } from "./ui/button";
 
 const PosterCard = ({ posterPath, movieTitle, movieName, mediaType, id, releaseDate, rating }) => {
   const navigate = useNavigate();
@@ -26,7 +25,7 @@ const PosterCard = ({ posterPath, movieTitle, movieName, mediaType, id, releaseD
     >
       <motion.div className="flex flex-col cursor-pointer max-w-34" onClick={handleNavigation}>
         <img
-          src={IMAGE_URL + posterPath}
+          src={POSTER_URL + posterPath}
           alt={movieTitle || movieName}
           loading="lazy"
           className="h-50 rounded-lg"

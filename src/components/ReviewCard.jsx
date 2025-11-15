@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { IMAGE_URL } from "@/utils/constant";
+import { SMALL_IMAGE_URL } from "@/utils/constant";
 import { ChevronDown, ChevronUp, Star } from "lucide-react";
 
 
@@ -15,7 +15,7 @@ const ReviewCard = ({ avatarUrl, username, name, review, rating }) => {
           <div className="flex items-center gap-3">
             <Avatar className="h-10 w-10 ring-2 ring-neutral-800">
               {avatarUrl && (
-                <AvatarImage src={IMAGE_URL + avatarUrl} alt={`${name}'s profile picture`} />
+                <AvatarImage src={SMALL_IMAGE_URL + avatarUrl} alt={`${name}'s profile picture`} />
               )}
               <AvatarFallback>{name?.slice(0, 2)?.toUpperCase()}</AvatarFallback>
             </Avatar>

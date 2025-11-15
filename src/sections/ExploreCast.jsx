@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { FALLBACK_PROFILE_PIC, IMAGE_URL } from "@/utils/constant";
+import { FALLBACK_PROFILE_PIC , SMALL_IMAGE_URL } from "@/utils/constant";
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 
 const ExploreCast = ({ cast }) => {
@@ -25,7 +25,7 @@ const ExploreCast = ({ cast }) => {
                   <div className="flex flex-col items-center text-center">
                     <Avatar>
                       <AvatarImage
-                        src={IMAGE_URL + member?.profile_path}
+                        src={SMALL_IMAGE_URL + member?.profile_path}
                         alt={member?.name}
                         className="w-15 md:w-20 h-15 md:h-20 rounded-full object-cover object-top"
                       />
